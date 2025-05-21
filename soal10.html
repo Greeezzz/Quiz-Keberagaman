@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soal 10</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center px-4 py-10">
+
+    <audio id="soundBenar" src="sound/klontong.mp3"></audio>
+    <audio id="soundSalah" src="sound/salah.mp3"></audio>
+
+  <div class="max-w-xl w-full text-center space-y-6">
+    <h2 class="text-3xl font-bold text-blue-600">Soal 10</h2>
+
+    <p class="text-xl text-gray-800 font-medium">Apa yang menjadi manfaat dari keberagaman budaya di Indonesia?</p>
+
+    <div id="options" class="grid gap-4 text-left">
+        <button onclick="checkAnswer(this, 'A')" data-kode="A"
+            class="border-2 border-blue-200 bg-blue-50 hover:bg-blue-100 text-blue-900 font-medium py-3 px-4 rounded-xl transition w-full text-lg">
+            A. Meningkatkan konflik antar suku
+        </button>
+        <button onclick="checkAnswer(this, 'B')" data-kode="B"
+            class="border-2 border-blue-200 bg-blue-50 hover:bg-blue-100 text-blue-900 font-medium py-3 px-4 rounded-xl transition w-full text-lg">
+            B. Meningkatkan Kreativitas dan Inovasi
+        </button>
+
+        <button onclick="checkAnswer(this, 'C')" data-kode="C"
+            class="border-2 border-blue-200 bg-blue-50 hover:bg-blue-100 text-blue-900 font-medium py-3 px-4 rounded-xl transition w-full text-lg">
+            C.Mengurangi Kesenjangan Sosial
+        </button>
+
+        <button onclick="checkAnswer(this, 'D')" data-kode="D"
+            class="border-2 border-blue-200 bg-blue-50 hover:bg-blue-100 text-blue-900 font-medium py-3 px-4 rounded-xl transition w-full text-lg">
+            D. Mengurangi kesadaran nasional
+        </button>
+    </div>
+
+    <div id="feedback" class="hidden space-y-4 mt-6">
+      <p id="result" class="text-xl font-semibold"></p>
+      <p class="text-gray-700 text-base">
+        Penjelasan: Keberagaman budaya di Indonesia menciptakan lingkungan yang kaya akan ide, tradisi, dan cara pandang yang berbeda-beda. Hal ini mendorong masyarakat untuk saling belajar, berkolaborasi, dan menciptakan sesuatu yang baru dari berbagai sudut pandang. Dari seni, kuliner, sampai teknologi semua bisa berkembang lebih kreatif karena adanya keberagaman. Jadi, bukan cuma indah secara budaya, tapi juga memperkuat inovasi bangsa!
+      </p>
+      <button onclick="goNext()" id="nextBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-xl shadow transition text-lg">
+        Lanjut
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let answered = false;
+
+    function checkAnswer(button, choice) {
+    if (answered) return;
+    answered = true;
+
+    const correct = 'B';
+    const buttons = document.querySelectorAll('#options button');
+    const resultText = document.getElementById('result');
+    const soundSalah = document.getElementById('soundSalah');
+
+    buttons.forEach(btn => {
+        const kode = btn.getAttribute('data-kode');
+        btn.disabled = true;
+
+        if (kode === correct) {
+        btn.classList.add('bg-green-500', 'text-white', 'border-green-700');
+        }
+
+        if (kode === choice) {
+            if (choice === correct) {
+            btn.classList.add('bg-green-700', 'text-white');
+            resultText.textContent = 'Jawaban Benar!';
+            resultText.className = 'text-green-600 text-xl font-semibold';
+            soundBenar.play();
+            let score = localStorage.getItem('skor') || 0;
+            localStorage.setItem('skor', parseInt(score) + 1);
+        } else {
+            btn.classList.add('bg-red-600', 'text-white');
+            resultText.textContent = 'Jawaban Salah!';
+            resultText.className = 'text-red-600 text-xl font-semibold';
+            soundSalah.play();
+        }
+        } else {
+            btn.classList.add('opacity-60');
+        }
+    });
+
+    document.getElementById('feedback').classList.remove('hidden');
+    }
+
+    function goNext() {
+      window.location.href = "result.html"; 
+    }
+  </script>
+
+</body>
+</html>

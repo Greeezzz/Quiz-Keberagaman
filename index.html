@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Quiz - Start</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white flex items-center justify-center min-h-screen px-4">
+    <div class="text-center space-y-6">
+      <h1 class="text-4xl font-bold text-blue-500">
+        Selamat Datang di Mini Quiz!
+      </h1>
+      <p class="text-lg text-gray-600">Uji pengetahuanmu tentang keberagaman indonesia, lesgo!</p>
+
+      <button
+        onclick="mulaiQuiz()"
+        class="bg-blue-400 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition duration-300 shadow-md"
+      >
+        Mulai Quiz
+      </button>
+
+      <a href="credit.html" class="ml-4 mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
+        👥 Credit
+      </a>
+    </div>
+
+    <script>
+      function mulaiQuiz() {
+        window.location.href = "soal1.html";
+      }
+    </script>
+  </body>
+</html>
